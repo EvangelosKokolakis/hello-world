@@ -1,0 +1,188 @@
+<!-- Kokolakis Evangelos Oct.2018 Javascript Calculator/ Currency Converter -->
+<html>
+    <head>
+         <title>Calulator/Currency_Converter_with_Javascript</title>
+        <script>
+            function insert(num){
+                document.form.textview.value=document.form.textview.value+num
+                                
+            }
+            function equal(){
+                var exp= document.form.textview.value;
+                if (exp){
+                    document.form.textview.value= eval(exp);
+                    
+                }
+                                
+            }
+            function clean(){
+                document.form.textview.value="";
+            }
+            function back(){
+                var exp = document.form.textview.value;
+                document.form.textview.value= exp.substring(0,exp.length-1);
+                
+            }
+            function euroConverter(){
+                document.converter.dollar.value = document.converter.euro.value * 1.470
+                document.converter.pound.value = document.converter.euro.value * 0.717
+                document.converter.yen.value = document.converter.euro.value * 165.192
+            }
+            function dollarConverter(){
+                document.converter.euro.value = document.converter.dollar.value * 0.680
+                document.converter.pound.value = document.converter.dollar.value * 0.488
+                document.converter.yen.value = document.converter.dollar.value * 112.36
+            }
+            function poundConverter(){
+                document.converter.dollar.value = document.converter.pound.value * 2.049
+                document.converter.euro.value = document.converter.pound.value * 1.394
+                document.converter.yen.value = document.converter.pound.value * 230.27
+            }
+            function yenConverter(){
+                document.converter.dollar.value = document.converter.yen.value * 0.0089
+                document.converter.pound.value = document.converter.yen.value * 0.00434
+                document.converter.euro.value = document.converter.yen.value * 0.00605
+            }
+        </script>
+        <style>
+            @keyframes background_animation{
+                0%   {background-color:brown; left:0px; top:0px;}                
+                100% {top:25%;left:40%;}
+            }
+            *{
+                margin: 0;
+                padding: 0;
+            }
+            .button{
+                width: 50;
+                height: 50;
+                font-size: 25;
+                margin: 2;
+                cursor: pointer;
+                background: #607d8b;
+                border:2px solid white;
+                border-radius: 50%;
+                color: white;
+            }
+            .button:hover {
+                background-color: #3e8e41;
+            }
+
+            .button:active {
+                background-color: #3e8e41;
+                box-shadow: 0 5px #666;
+                transform: translateY(4px);
+            }
+                
+           
+            .textview{
+                width: 217;
+                margin: 5;
+                font-size: 25;
+                padding: 5;
+                border:none;
+                color:#607d8b;
+                
+            }
+            .main{
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translateX(-50%)translateY(-50%);
+                border: 5px double white;
+                padding:20;
+                border-bottom-left-radius: 10%;
+                border-top-right-radius: 10%;
+                background-color:brown;
+                box-shadow: 10px 10px brown;
+            }
+            .bg{
+                background: linear-gradient(141deg, #9fb8ad 20%, #1fc8db 51%, #2cb5e8 75%);
+                
+                height: 100%;                
+                
+            }
+            .description{
+                position:absolute;
+                top:25%;
+                left:40%;            
+                animation-name: background_animation;
+                animation-duration: 2s;
+                animation-timing-function: linear;
+                animation-delay: 0s;
+                animation-iteration-count: none;
+                animation-direction: none;
+            }
+            #converter{
+                position: absolute;
+                top: 60%;
+                left: 70%;
+                transform: translateX(-70%)translateY(-70%);
+            }
+            
+        </style>
+    </head>
+    <body>
+        <div class="bg"></div> 
+        <div class="description"><h1 style="color: antiquewhite"><strong>Calculator</strong> with Janascript</h1></div>
+        <div class="main"> 
+            
+            <form name="form">
+                <input class="textview" name="textview">
+            </form>
+            <table>
+                <tr>
+                    <td><input class="button" type="button" value="C" onclick="clean()"></td>
+                    <td><input class="button" type="button" value="<" onclick="back()"></td>
+                    <td><input class="button" type="button" value="/" onclick="insert('/')"></td>
+                    <td><input class="button" type="button" value="x" onclick="insert('*')"></td>
+                </tr>
+                <tr>
+                    <td><input class="button" type="button" value="7" onclick="insert(7)"></td>
+                    <td><input class="button" type="button" value="8" onclick="insert(8)"></td>
+                    <td><input class="button" type="button" value="9" onclick="insert(9)"></td>
+                    <td><input class="button" type="button" value="-" onclick="insert('-')"></td>
+                </tr>
+                <tr>
+                    <td><input class="button" type="button" value="4" onclick="insert(4)"></td>
+                    <td><input class="button" type="button" value="5" onclick="insert(5)"></td>
+                    <td><input class="button" type="button" value="6" onclick="insert(6)"></td>
+                    <td><input class="button" type="button" value="+" onclick="insert('+')"></td>
+                </tr>
+                <tr>
+                    <td><input class="button" type="button" value="1" onclick="insert(1)"></td>
+                    <td><input class="button" type="button" value="2" onclick="insert(2)"></td>
+                    <td><input class="button" type="button" value="3" onclick="insert(3)"></td>
+                    <td rowspan="5"><input class="button" type="button" style="height: 106; border-radius:10%" value="=" onclick="equal()"></td>
+                </tr>
+                <tr>
+                    <td colspan=2><input class="button" style="width:106; border-radius:10%" type="button" value="0" onclick="insert(0)"></td>
+                    <td><input class="button" type="button" value="." onclick="insert('.')"></td>
+                </tr>
+            </table>
+                
+            
+        </div>
+        <form name="converter", id="converter">
+            <table border="0">
+                <tr>
+                    <td>Euro: </td><td><input type="text" name="euro" onChange="euroConverter()" /></td>
+                </tr>
+                <tr>
+                    <td>US Dollar: </td><td><input type="text" name="dollar" onChange="dollarConverter()" /></td>
+                </tr>
+                <tr>
+                    <td>British Pound:</td><td><input type="text" name="pound" onChange="poundConverter()" /></td>
+                </tr>
+                <tr>
+                    <td>Japanese Yen: </td><td><input type="text" name="yen" onChange="yenConverter()" /></td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="center"><input type="button" value="Convert!" /></td>
+                </tr>
+            </table>
+        </form>  
+
+       
+    </body>
+</html>
